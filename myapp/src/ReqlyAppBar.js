@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchBar from './SearchBar'
+import DefaultBar from './DefaultBar'
 
 
 function ReqlyAppBar(props) {
   const { classes } = props;
   return (
-    <SearchBar
-      onChange={() => console.log('onChange')}
-      onRequestSearch={() => console.log('onRequestSearch')}
-    />
+    <DefaultBar />
   );
 }
 
