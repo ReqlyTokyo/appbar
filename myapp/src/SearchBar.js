@@ -123,6 +123,7 @@ class SearchBar extends Component {
       >
         <IconButton
           className={classes.iconButton}
+          onClick={this.props.onHandleChange}
         >
           <BackIcon />
         </IconButton>

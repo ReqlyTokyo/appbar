@@ -4,16 +4,31 @@ import DefaultBar from './DefaultBar'
 
 
 class ReqlyAppBar extends React.Component{
+  state = {
+    search: false,
+  };
+
+  handleChange = event => {
+    console.log("handleChange called!");
+    this.setState({ ['search']: !this.state.search });
+  };
+
   render () {
-    return (
-      <div>
-        <DefaultBar />
+    if (this.state.search) {
+      return (
         <SearchBar
           onChange={() => console.log('onChange')}
           onRequestSearch={() => console.log('onRequestSearch')}
+          onHandleChange={this.handleChange}
         />
-      </div>
-    );
+        );
+    } else {
+      return (
+        <DefaultBar
+          onHandleChange={this.handleChange}
+        />
+      );
+    }
   }
 }
 

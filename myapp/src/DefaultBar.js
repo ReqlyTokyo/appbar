@@ -55,8 +55,8 @@ class DefaultBar extends React.Component {
             </Typography>
               <div>
                   <IconButton
-                    onClick={this.props.onHandleChange}
                     color="inherit"
+                    onClick={this.props.onHandleChange}
                   >
                     <Search className={classes.icon}/>
                   </IconButton>
