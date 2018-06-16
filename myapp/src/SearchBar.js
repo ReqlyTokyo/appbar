@@ -5,6 +5,7 @@ import Input from '@material-ui/core/Input'
 import Paper from '@material-ui/core/Paper'
 import ClearIcon from '@material-ui/icons/Clear'
 import SearchIcon from '@material-ui/icons/Search'
+import BackIcon from '@material-ui/icons/KeyboardBackspace'
 import { grey } from '@material-ui/core/colors'
 import withStyles from '@material-ui/core/styles/withStyles'
 import classNames from 'classnames'
@@ -120,6 +121,12 @@ class SearchBar extends Component {
         className={classes.root}
         style={style}
       >
+        <IconButton
+          className={classes.iconButton}
+        >
+          <BackIcon />
+        </IconButton>
+
         <div className={classes.searchContainer}>
           <Input
             {...inputProps}
