@@ -5,7 +5,13 @@ import DefaultBar from './DefaultBar'
 
 function ReqlyAppBar(props) {
   return (
-    <DefaultBar />
+    <div>
+      <DefaultBar />
+      <SearchBar
+        onChange={() => console.log('onChange')}
+        onRequestSearch={() => console.log('onRequestSearch')}
+      />
+    </div>
   );
 }
 
