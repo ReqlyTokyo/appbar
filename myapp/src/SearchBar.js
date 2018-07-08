@@ -132,6 +132,7 @@ class SearchBar extends Component {
           <Input
             {...inputProps}
             onBlur={this.handleBlur}
+            autoFocus
             value={value}
             onChange={this.handleInput}
             onKeyUp={this.handleKeyUp}
