@@ -23,11 +23,17 @@ const styles = theme => ({
 });
 
 class SelectableChip extends React.Component{
-  state = { selected: false };
 
   handleChange = event => {
     this.setState({ ['selected']: !this.state.selected });
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: this.props.selected,
+    };
+  }
 
   render () {
     const { classes } = this.props;

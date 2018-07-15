@@ -32,13 +32,13 @@ class FilterAssist extends React.Component {
           justify="center"
           className={classes.top}>
           <Grid item>
-            <SelectableChip label="30分以内"/>
+            <SelectableChip label="30分以内" selected={true}/>
           </Grid>
           <Grid item>
-            <SelectableChip label="簡単"/>
+            <SelectableChip label="簡単" selected={false}/>
           </Grid>
           <Grid item>
-            <SelectableChip label="シンプル食材"/>
+            <SelectableChip label="シンプル食材" selected={false}/>
           </Grid>
         </Grid>
         <MultipleSelect
