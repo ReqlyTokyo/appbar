@@ -20,8 +20,8 @@ const styles = theme => ({
   },
   formControl: {
     margin: 'auto',
-    width: 250,
-    hight: 100,
+    width: '250px',
+    hight: '100px',
   },
   chips: {
     display: 'flex',
@@ -45,16 +45,26 @@ const MenuProps = {
 };
 
 class MultipleSelect extends React.Component {
-  state = {
-    name: [],
-  };
+
+  constructor(props) {
+    super(props);
+    if (this.props.preset == null) {
+      console.log("preset undefined");
+      this.state = {
+        name: []
+      };
+    } else {
+      this.state = {
+        name: this.props.preset
+      };
+    }
+  }
 
   handleChange = event => {
     this.setState({ name: event.target.value});
   };
 
   handleDelete = event => () => {
-    console.log(event);
     this.setState(state => {
         const name = [...state.name];
         const chipToDelete = name.indexOf(event);
