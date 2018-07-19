@@ -35,10 +35,10 @@ class FilterAssist extends React.Component {
             <SelectableChip label="30分以内" selected={true}/>
           </Grid>
           <Grid item>
-            <SelectableChip label="簡単" selected={false}/>
+            <SelectableChip label="調理簡単" selected={false}/>
           </Grid>
           <Grid item>
-            <SelectableChip label="シンプル食材" selected={false}/>
+            <SelectableChip label="食材シンプル" selected={false}/>
           </Grid>
         </Grid>
         <MultipleSelect

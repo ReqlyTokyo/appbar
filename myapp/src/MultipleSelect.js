@@ -9,16 +9,19 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
+import FormGroup from '@material-ui/core/FormGroup';
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    marginLeft: '30px',
+    marginRight: '30px',
   },
   formControl: {
-    marginTop: '15px',
     margin: 'auto',
-    width: 300,
+    width: 250,
+    hight: 100,
   },
   chips: {
     display: 'flex',
@@ -27,6 +30,10 @@ const styles = theme => ({
   chip: {
     margin: theme.spacing.unit / 4,
   },
+  textBox: {
+    width: '80px',
+    color: '#403f40',
+  }
 });
 
 const MenuProps = {
@@ -43,16 +50,26 @@ class MultipleSelect extends React.Component {
   };
 
   handleChange = event => {
-    this.setState({ name: event.target.value });
+    this.setState({ name: event.target.value});
   };
+
+  handleDelete = event => () => {
+    console.log(event);
+    this.setState(state => {
+        const name = [...state.name];
+        const chipToDelete = name.indexOf(event);
+        name.splice(chipToDelete, 1);
+        return { name };
+    });
+  }
 
   render() {
     const { classes, theme } = this.props;
 
     return (
-      <div className={classes.root}>
+      <FormGroup row className={classes.root}>
+        <p className={classes.textBox}>{this.props.label}</p>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="select-multiple-chip">{this.props.label}</InputLabel>
           <Select
             multiple
             value={this.state.name}
@@ -60,7 +77,7 @@ class MultipleSelect extends React.Component {
             input={<Input id="select-multiple-chip" />}
             renderValue={selected => (
               <div className={classes.chips}>
-                {selected.map(value => <Chip key={value} label={value} className={classes.chip} />)}
+                {selected.map(value => <Chip key={value} label={value} className={classes.chip} onDelete={this.handleDelete(value)}/>)}
               </div>
             )}
             MenuProps={MenuProps}
@@ -81,7 +98,7 @@ class MultipleSelect extends React.Component {
             ))}
           </Select>
         </FormControl>
-      </div>
+      </FormGroup>
     );
   }
 }
