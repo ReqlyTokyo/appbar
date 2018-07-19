@@ -21,7 +21,6 @@ const styles = theme => ({
   formControl: {
     margin: 'auto',
     width: '250px',
-    hight: '100px',
   },
   chips: {
     display: 'flex',

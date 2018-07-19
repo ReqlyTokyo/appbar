@@ -9,6 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Search from '@material-ui/icons/Search';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import SearchModalButton from './SearchModalButton'
 
 
 const styles = {
@@ -53,13 +54,8 @@ class DefaultBar extends React.Component {
             <Typography variant="title" color="inherit" className={classes.flex}>
               REQLY
             </Typography>
-              <div>
-                  <IconButton
-                    color="inherit"
-                    onClick={this.props.onHandleChange}
-                  >
-                    <Search className={classes.icon}/>
-                  </IconButton>
+              <div style={{display: "flex"}}>
+                <SearchModalButton />
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : null}
                   aria-haspopup="true"

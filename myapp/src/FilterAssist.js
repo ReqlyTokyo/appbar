@@ -44,7 +44,7 @@ class FilterAssist extends React.Component {
         <MultipleSelect
           label="カテゴリ"
           names={["主食・丼", "主菜", "副菜", "汁もの", "スイーツ"]}
-          preset={["主菜", "副菜"]}
+          preset={["主菜"]}
         />
         <MultipleSelect
           label="特徴"
