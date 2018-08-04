@@ -195,6 +195,7 @@ SearchBar.propTypes = {
   placeholder: PropTypes.string,
   /** Fired when the text value changes. */
   onChange: PropTypes.func,
+  onHandleChange: PropTypes.func,
   /** Fired when the search icon is clicked. */
   onRequestSearch: PropTypes.func.isRequired,
   /** Override the search icon. */

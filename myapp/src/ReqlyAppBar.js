@@ -9,7 +9,7 @@ class ReqlyAppBar extends React.Component{
   };
 
   handleChange = event => {
-    console.log("handleChange called!");
+    // console.log("handleChange called!");
     this.setState({ ['search']: !this.state.search });
   };
 

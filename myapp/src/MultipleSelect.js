@@ -18,9 +18,15 @@ const styles = theme => ({
     marginLeft: '30px',
     marginRight: '30px',
   },
+  mxauto: {
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  },
   formControl: {
-    margin: 'auto',
     width: '250px',
+  },
+  select: {
+    height: '50px', 
   },
   chips: {
     display: 'flex',
@@ -77,36 +83,39 @@ class MultipleSelect extends React.Component {
 
     return (
       <FormGroup row className={classes.root}>
-        <p className={classes.textBox}>{this.props.label}</p>
-        <FormControl className={classes.formControl}>
-          <Select
-            multiple
-            value={this.state.name}
-            onChange={this.handleChange}
-            input={<Input id="select-multiple-chip" />}
-            renderValue={selected => (
-              <div className={classes.chips}>
-                {selected.map(value => <Chip key={value} label={value} className={classes.chip} onDelete={this.handleDelete(value)}/>)}
-              </div>
-            )}
-            MenuProps={MenuProps}
-          >
-            {this.props.names.map(name => (
-              <MenuItem
-                key={name}
-                value={name}
-                style={{
-                  fontWeight:
-                    this.state.name.indexOf(name) === -1
-                      ? theme.typography.fontWeightRegular
-                      : theme.typography.fontWeightMedium,
-                }}
-              >
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <div className={classes.mxauto}>
+          <p className={classes.textBox}>{this.props.label}</p>
+          <FormControl className={classes.formControl}>
+            <Select
+              multiple
+              value={this.state.name}
+              onChange={this.handleChange}
+              input={<Input id="select-multiple-chip" />}
+              renderValue={selected => (
+                <div className={classes.chips}>
+                  {selected.map(value => <Chip key={value} label={value} className={classes.chip} onDelete={this.handleDelete(value)}/>)}
+                </div>
+              )}
+              className={classes.select}
+              MenuProps={MenuProps}
+            >
+              {this.props.names.map(name => (
+                <MenuItem
+                  key={name}
+                  value={name}
+                  style={{
+                    fontWeight:
+                      this.state.name.indexOf(name) === -1
+                        ? theme.typography.fontWeightRegular
+                        : theme.typography.fontWeightMedium,
+                  }}
+                >
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
       </FormGroup>
     );
   }
