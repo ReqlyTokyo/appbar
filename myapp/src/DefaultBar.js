@@ -55,7 +55,9 @@ class DefaultBar extends React.Component {
               REQLY
             </Typography>
               <div style={{display: "flex"}}>
-                <SearchModalButton />
+                <IconButton onClick={() => this.props.onHandleChange()} color="inherit">
+                  <Search style={{fontSize: 36}}/>
+                </IconButton>
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : null}
                   aria-haspopup="true"
@@ -91,6 +93,7 @@ class DefaultBar extends React.Component {
 
 DefaultBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  onHandleChange: PropTypes.func
 };
 
 export default withStyles(styles)(DefaultBar);

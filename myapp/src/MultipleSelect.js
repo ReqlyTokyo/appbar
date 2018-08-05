@@ -10,6 +10,7 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
 import FormGroup from '@material-ui/core/FormGroup';
+import enumToStr from './Utils'
 
 const styles = theme => ({
   root: {
@@ -26,7 +27,7 @@ const styles = theme => ({
     width: '250px',
   },
   select: {
-    height: '50px', 
+    minHeight: '50px', 
   },
   chips: {
     display: 'flex',
@@ -66,7 +67,7 @@ class MultipleSelect extends React.Component {
   }
 
   handleChange = event => {
-    this.setState({ name: event.target.value});
+    this.setState({ name: event.target.value });
   };
 
   handleDelete = event => () => {
@@ -78,6 +79,8 @@ class MultipleSelect extends React.Component {
     });
   }
 
+
+
   render() {
     const { classes, theme } = this.props;
 
@@ -88,12 +91,12 @@ class MultipleSelect extends React.Component {
           <FormControl className={classes.formControl}>
             <Select
               multiple
-              value={this.state.name}
-              onChange={this.handleChange}
+              value={this.props.preset}
+              onChange={this.props.onHandleFeaturesChange}
               input={<Input id="select-multiple-chip" />}
               renderValue={selected => (
                 <div className={classes.chips}>
-                  {selected.map(value => <Chip key={value} label={value} className={classes.chip} onDelete={this.handleDelete(value)}/>)}
+                  {selected.map(value => <Chip key={value} label={enumToStr(value)} className={classes.chip} onDelete={this.props.onHandleFeaturesDelete(value)}/>)}
                 </div>
               )}
               className={classes.select}
@@ -105,12 +108,12 @@ class MultipleSelect extends React.Component {
                   value={name}
                   style={{
                     fontWeight:
-                      this.state.name.indexOf(name) === -1
+                      this.props.preset.indexOf(name) === -1
                         ? theme.typography.fontWeightRegular
                         : theme.typography.fontWeightMedium,
                   }}
                 >
-                  {name}
+                  {enumToStr(name)}
                 </MenuItem>
               ))}
             </Select>

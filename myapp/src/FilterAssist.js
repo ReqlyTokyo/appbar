@@ -16,14 +16,18 @@ const styles = {
 };
 
 class FilterAssist extends React.Component {
-  state = {};
-
+  state = {}
+/*
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
   };
+*/
 
   render() {
     const { classes } = this.props;
+    const categories = [6, 7, 8, 9, 10] //["主食・丼", "主菜", "副菜", "汁もの", "スイーツ"];
+   // const features = ["基本", "ヘルシー", "お弁当", "朝ごはん", "おつまみ"];
+    const features_map = [12, 11, 5, 1, 4];
 
     return (
       <div >
@@ -32,23 +36,28 @@ class FilterAssist extends React.Component {
           justify="center"
           className={classes.top}>
           <Grid item>
-            <SelectableChip label="30分以内" selected={true}/>
+            <SelectableChip label="30分以内" selected={this.props.cooktime === 3} onHandleChange={() => this.props.onHandleChange("cooktime")}/>
           </Grid>
           <Grid item>
-            <SelectableChip label="調理簡単" selected={false}/>
+            <SelectableChip label="調理簡単" selected={this.props.procedure === 1} onHandleChange={() => this.props.onHandleChange("procedure")}/>
           </Grid>
           <Grid item>
-            <SelectableChip label="食材シンプル" selected={false}/>
+            <SelectableChip label="食材シンプル" selected={this.props.food === 1} onHandleChange={() => this.props.onHandleChange("food")}/>
           </Grid>
         </Grid>
         <MultipleSelect
           label="カテゴリ"
-          names={["主食・丼", "主菜", "副菜", "汁もの", "スイーツ"]}
-          preset={["主菜"]}
+          names={categories}
+          preset={this.props.categories}
+          onHandleFeaturesChange={this.props.onHandleCategoriesChange}
+          onHandleFeaturesDelete={this.props.onHandleCategoriesDelete}
         />
         <MultipleSelect
           label="特徴"
-          names={["基本", "ヘルシー", "お弁当", "朝ごはん", "おつまみ"]}
+          names={features_map}
+          preset={this.props.features}
+          onHandleFeaturesChange={this.props.onHandleFeaturesChange}
+          onHandleFeaturesDelete={this.props.onHandleFeaturesDelete}
         />
       </ div>
     );
@@ -57,6 +66,7 @@ class FilterAssist extends React.Component {
 
 FilterAssist.propTypes = {
   classes: PropTypes.object.isRequired,
+  onHandleChange: PropTypes.func
 };
 
 export default withStyles(styles)(FilterAssist);

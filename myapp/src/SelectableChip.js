@@ -37,13 +37,13 @@ class SelectableChip extends React.Component{
 
   render () {
     const { classes } = this.props;
-    if (this.state.selected) {
+    if (this.props.selected) {
       return (
         <Button
           variant="outlined"
           className={classes.button}
           style={selectedStyle}
-          onClick={this.handleChange}
+          onClick={this.props.onHandleChange}
         >
         {this.props.label}
         </Button>
@@ -54,7 +54,7 @@ class SelectableChip extends React.Component{
           variant="outlined"
           className={classes.button}
           style={defaultStyle}
-          onClick={this.handleChange}
+          onClick={this.props.onHandleChange}
         >
         {this.props.label}
         </Button>

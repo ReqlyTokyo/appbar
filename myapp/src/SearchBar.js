@@ -9,6 +9,7 @@ import BackIcon from '@material-ui/icons/KeyboardBackspace'
 import { grey } from '@material-ui/core/colors'
 import withStyles from '@material-ui/core/styles/withStyles'
 import classNames from 'classnames'
+import enumToStr from './Utils'
 
 const styles = {
   root: {
@@ -91,8 +92,11 @@ class SearchBar extends Component {
   }
 
   handleCancel = () => {
-    this.setState({active: false, value: ''})
-    this.props.onChange && this.props.onChange('')
+    this.props.closeButton()
+  }
+
+  handleSearchMode = () => {
+    this.props.onHandleChange(this.state.value);
   }
 
   handleKeyUp = (e) => {
@@ -101,6 +105,21 @@ class SearchBar extends Component {
     }
     if (this.props.onKeyUp) {
       this.props.onKeyUp(e)
+    }
+  }
+
+  searchWord = () => {
+    //console.log(this.props.search)
+    const filter = [(this.props.food === 1 ? "シンプル": ""), 
+                    (this.props.procedure === 1 ? "簡単": ""),
+                    (this.props.cookTime === 3 ? "30分以内": ""),
+                    ...this.props.features.map(a => enumToStr(a)),
+                    ...this.props.categories.map(a => enumToStr(a)),
+                  ].filter(a => a !== "").join("+");
+    if (filter !== "") {
+      return "\"" + this.props.value + "\"" + "+" + filter;
+    } else {
+      return "\"" + this.props.value + "\"" 
     }
   }
 
@@ -113,6 +132,9 @@ class SearchBar extends Component {
       onRequestSearch, // eslint-disable-line
       searchIcon,
       style,
+      search_mode,
+      backButton,
+      onHandleChange,
       ...inputProps
     } = this.props
 
@@ -123,13 +145,14 @@ class SearchBar extends Component {
       >
         <IconButton
           className={classes.iconButton}
-          onClick={this.props.onHandleChange}
+          onClick={() => this.props.backButton(this.state.value)}
         >
           <BackIcon />
         </IconButton>
 
         <div className={classes.searchContainer}>
-          <Input
+        {this.props.search_mode ? 
+        <Input
             {...inputProps}
             onBlur={this.handleBlur}
             autoFocus
@@ -141,12 +164,13 @@ class SearchBar extends Component {
             className={classes.input}
             disableUnderline
             disabled={disabled}
-          />
-        </div>
+          /> : <div onClick={() => this.props.backButton(this.state.value)}>{this.searchWord()}</div> }
+        </div> 
         <IconButton
+          onClick={this.handleSearchMode}
           classes={{
             root: classNames(classes.iconButton, classes.searchIconButton, {
-              [classes.iconButtonHidden]: value !== ''
+              [classes.iconButtonHidden]: !search_mode
             }),
             disabled: classes.iconButtonDisabled
           }}
@@ -160,7 +184,7 @@ class SearchBar extends Component {
           onClick={this.handleCancel}
           classes={{
             root: classNames(classes.iconButton, {
-              [classes.iconButtonHidden]: value === ''
+              [classes.iconButtonHidden]: search_mode
             }),
             disabled: classes.iconButtonDisabled
           }}
@@ -203,7 +227,9 @@ SearchBar.propTypes = {
   /** Override the inline-styles of the root element. */
   style: PropTypes.object,
   /** The value of the text field. */
-  value: PropTypes.string
+  value: PropTypes.string,
+  search_mode: PropTypes.bool,
+  backButton: PropTypes.func
 }
 
 export default withStyles(styles)(SearchBar)

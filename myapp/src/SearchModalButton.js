@@ -30,7 +30,7 @@ const styles = theme => ({
 
 class SearchModalButton extends React.Component {
   state = {
-    open: false,
+    open: true,
   };
 
   handleOpen = () => {
@@ -38,7 +38,8 @@ class SearchModalButton extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    //this.setState({ open: false });
+    this.props.onHandleChange()
   };
 
   render() {
@@ -46,9 +47,6 @@ class SearchModalButton extends React.Component {
 
     return (
       <div style={{display: 'flex'}}>
-        <IconButton onClick={this.handleOpen} color="inherit">
-          <Search style={{fontSize: 36}}/>
-        </IconButton>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
@@ -59,9 +57,25 @@ class SearchModalButton extends React.Component {
             <SearchBar
               onChange={() => console.log('onChange')}
               onRequestSearch={() => console.log('onRequestSearch')}
-              onHandleChange={this.handleClose}
+              onHandleChange={this.props.onHandleChange}
+              search_mode={true}
+              value={this.props.search}
+              backButton={this.props.backButton}
+              features={this.state.features}
+              categories={this.state.categories}
             />
-            <FilterAssist />
+            <FilterAssist
+              onHandleChange={this.props.onHandleFilterChange}
+              food={this.props.food}
+              cooktime={this.props.cooktime}
+              procedure={this.props.procedure}
+              features={this.props.features}
+              categories={this.props.categories}
+              onHandleFeaturesChange={this.props.onHandleFeaturesChange}
+              onHandleFeaturesDelete={this.props.onHandleFeaturesDelete}
+              onHandleCategoriesChange={this.props.onHandleCategoriesChange}
+              onHandleCategoriesDelete={this.props.onHandleCategoriesDelete}
+            />
           </div>
         </Modal>
       </div>
@@ -71,6 +85,9 @@ class SearchModalButton extends React.Component {
 
 SearchModalButton.propTypes = {
   classes: PropTypes.object.isRequired,
+  onHandleFilterChange: PropTypes.func,
+  backButton: PropTypes.func,
+  onHandleChange: PropTypes.func,
 };
 
 export default withStyles(styles)(SearchModalButton);
