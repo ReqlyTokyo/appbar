@@ -43,7 +43,10 @@ const styles = {
   },
   searchContainer: {
     margin: 'auto 16px',
-    width: '100%'
+    width: '100%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap'
   }
 }
 
@@ -165,7 +168,7 @@ class SearchBar extends Component {
             className={classes.input}
             disableUnderline
             disabled={disabled}
-          /> : <div onClick={() => this.props.backButton(this.state.value)}>{this.searchWord()}</div> }
+          /> : <div onClick={() => this.props.backButton(this.state.value)} style={{textOverflow: "ellipsis", overflow: "hidden"}}>{this.searchWord()}</div> }
         </div> 
         <IconButton
           onClick={this.handleSearchMode}
