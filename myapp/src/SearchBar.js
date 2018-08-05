@@ -201,10 +201,10 @@ class SearchBar extends Component {
 }
 
 SearchBar.defaultProps = {
-  closeIcon: <ClearIcon style={{ color: grey[500] }} />,
+  closeIcon: <ClearIcon style={{ fontSize: "30px", opacity: 0.82 }} />,
   disabled: false,
-  placeholder: 'Search',
-  searchIcon: <SearchIcon style={{ color: grey[500] }} />,
+  placeholder: 'レシピ名・食材を入力',
+  searchIcon: <SearchIcon style={{ fontSize: "30px", opacity: 0.82 }} />,
   style: null,
   value: ''
 }

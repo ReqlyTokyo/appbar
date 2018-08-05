@@ -38,7 +38,7 @@ const styles = theme => ({
   },
   textBox: {
     width: '80px',
-    marginTop: '2px',
+    marginTop: '10px',
     marginBottom: '2px',
     color: '#403f40',
   }
