@@ -101,7 +101,8 @@ class SearchBar extends Component {
 
   handleKeyUp = (e) => {
     if (e.charCode === 13 || e.key === 'Enter') {
-      this.props.onRequestSearch(this.state.value)
+      // this.props.onRequestSearch(this.state.value)
+      this.props.onHandleChange(this.state.value);
     }
     if (this.props.onKeyUp) {
       this.props.onKeyUp(e)
@@ -112,7 +113,7 @@ class SearchBar extends Component {
     //console.log(this.props.search)
     const filter = [(this.props.food === 1 ? "シンプル": ""), 
                     (this.props.procedure === 1 ? "簡単": ""),
-                    (this.props.cookTime === 3 ? "30分以内": ""),
+                    (this.props.cooktime === 3 ? "30分以内": ""),
                     ...this.props.features.map(a => enumToStr(a)),
                     ...this.props.categories.map(a => enumToStr(a)),
                   ].filter(a => a !== "").join("+");

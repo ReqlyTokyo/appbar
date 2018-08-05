@@ -38,6 +38,8 @@ const styles = theme => ({
   },
   textBox: {
     width: '80px',
+    marginTop: '2px',
+    marginBottom: '2px',
     color: '#403f40',
   }
 });
