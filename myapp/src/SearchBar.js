@@ -114,11 +114,11 @@ class SearchBar extends Component {
 
   searchWord = () => {
     //console.log(this.props.search)
-    const filter = [(this.props.food === 1 ? "シンプル": ""), 
+    const filter = [(this.props.cooktime === 3 ? "30分以内": ""),
                     (this.props.procedure === 1 ? "簡単": ""),
-                    (this.props.cooktime === 3 ? "30分以内": ""),
-                    ...this.props.features.map(a => enumToStr(a)),
+                    (this.props.food === 1 ? "シンプル": ""),
                     ...this.props.categories.map(a => enumToStr(a)),
+                    ...this.props.features.map(a => enumToStr(a)),
                   ].filter(a => a !== "").join("+");
     if (filter !== "") {
       return "\"" + this.props.value + "\"" + "+" + filter;
