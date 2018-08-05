@@ -18,7 +18,8 @@ const selectedStyle = {
 
 const styles = theme => ({
   button: {
-    margin: '10px'
+    margin: '10px',
+    lineHeight: 'none'
   },
 });
 

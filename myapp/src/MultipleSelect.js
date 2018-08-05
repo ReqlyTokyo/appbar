@@ -57,7 +57,7 @@ class MultipleSelect extends React.Component {
   constructor(props) {
     super(props);
     if (this.props.preset == null) {
-      console.log("preset undefined");
+      // console.log("preset undefined");
       this.state = {
         name: []
       };

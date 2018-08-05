@@ -16,7 +16,7 @@ class ReqlyAppBar extends React.Component{
   };
 
   handleChange = event => {
-    console.log("handleChange called!");
+    // console.log("handleChange called!");
     const search_word = event === undefined ? "" : event ;
     this.setState({search: search_word, search_mode:  !this.state.search_mode });
   };
@@ -49,7 +49,7 @@ class ReqlyAppBar extends React.Component{
     });
   }
   handleFilterChange = event => {
-    console.log(event)
+    // console.log(event)
     if (event === "food") {
       if (this.state.food === 0) {
         this.setState({food: 1})
@@ -72,7 +72,7 @@ class ReqlyAppBar extends React.Component{
   }
 
   handleFeaturesChange = event => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     this.setState({ features: event.target.value});
   };
 
@@ -86,7 +86,7 @@ class ReqlyAppBar extends React.Component{
   }
 
   handleCategoriesChange = event => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     this.setState({ categories: event.target.value});
   };
 
